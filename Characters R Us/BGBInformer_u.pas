@@ -226,6 +226,7 @@ begin
      Exit;
   end;
 
+  rchdtCharacter.Lines.Clear;
   while not Eof(TF) do
     begin
       Readln(TF, sOneLine);
