@@ -280,6 +280,8 @@ begin
 end;
 
 procedure TfrmBGBInformer.closeApp;
+var
+  sParthPicture: string;
 begin
   tbshtWelcome.TabVisible:= False;
   tbshtHelp.TabVisible:= False;
@@ -292,6 +294,18 @@ begin
 
   tbshtFarewell.TabVisible:= True;
   tbshtFarewell.Show;
+
+  sParthPicture:= 'Pictures/Farewell.bmp';
+
+  //Code to check if image exist
+  if FileExists(sParthPicture)
+  then begin
+         //Code to load image into image component (imgCharacter)
+         imgFarewell.Picture.LoadFromFile(sParthPicture);
+       end
+       else begin
+              imgFarewell.Picture.LoadFromFile('Character/Error.bmp');
+            end;
 end;
 
 procedure TfrmBGBInformer.definitionPage;
