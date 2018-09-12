@@ -20,7 +20,7 @@ object frmBGBInformer: TfrmBGBInformer
     Top = 0
     Width = 769
     Height = 416
-    ActivePage = tbshtWebBrowser
+    ActivePage = tbshtFarewell
     Align = alClient
     TabOrder = 0
     object tbshtWelcome: TTabSheet
@@ -1319,14 +1319,48 @@ object frmBGBInformer: TfrmBGBInformer
     object tbshtFarewell: TTabSheet
       Caption = 'Farewell'
       ImageIndex = 7
-      object btnClose: TButton
-        Left = 184
-        Top = 152
-        Width = 75
-        Height = 25
-        Caption = 'btnClose'
+      object imgFarewell: TImage
+        Left = 0
+        Top = 121
+        Width = 761
+        Height = 226
+        Align = alClient
+        Stretch = True
+        ExplicitWidth = 1079
+        ExplicitHeight = 152
+      end
+      object memoFarewellMessage: TMemo
+        Left = 0
+        Top = 0
+        Width = 761
+        Height = 121
+        Align = alTop
+        Color = clRed
+        Font.Charset = ANSI_CHARSET
+        Font.Color = clWindowText
+        Font.Height = -27
+        Font.Name = 'Bradley Hand ITC'
+        Font.Style = [fsBold, fsItalic, fsUnderline]
+        Lines.Strings = (
+          'Farewell Sad To See You Go'
+          'Come Back Soon'
+          'To The BGB Informer')
+        ParentFont = False
+        ReadOnly = True
         TabOrder = 0
+        ExplicitWidth = 1079
+      end
+      object btnClose: TButton
+        Left = 0
+        Top = 347
+        Width = 761
+        Height = 41
+        Align = alBottom
+        Caption = 'Close'
+        TabOrder = 1
         OnClick = btnCloseClick
+        ExplicitLeft = -3
+        ExplicitTop = 216
       end
     end
   end

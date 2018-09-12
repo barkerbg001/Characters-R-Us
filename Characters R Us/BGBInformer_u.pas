@@ -5,7 +5,7 @@ interface
 uses
   Windows, Messages, SysUtils, Variants, Classes, Graphics, Controls, Forms,
   Dialogs, ComCtrls, StdCtrls, ExtCtrls, Buttons, Sockets, OleCtrls, SHDocVw,
-  CheckLst, Calculator_u;
+  CheckLst, Calculator_u, ToolWin;
 
 type
   TfrmBGBInformer = class(TForm)
@@ -35,7 +35,6 @@ type
     rgpOptionsDefinition: TRadioGroup;
     wbrDefinitions: TWebBrowser;
     tcpsrvrDefinitions: TTcpServer;
-    btnClose: TButton;
     grpbxCharacters: TGroupBox;
     cbbCharacters: TComboBox;
     grpbxPicturesChoice: TGroupBox;
@@ -48,6 +47,9 @@ type
     edtNavigate: TEdit;
     wbrBrowser: TWebBrowser;
     rgpWebBrowserOptions: TRadioGroup;
+    memoFarewellMessage: TMemo;
+    imgFarewell: TImage;
+    btnClose: TButton;
     procedure btbtnHelpFileCharactersClick(Sender: TObject);
     procedure btbtnCloseCharactersClick(Sender: TObject);
     procedure btbtnBackToCharactersPageClick(Sender: TObject);
@@ -151,8 +153,14 @@ begin
 end;
 
 procedure TfrmBGBInformer.btnCloseClick(Sender: TObject);
+var
+  sName, sMessage: string;
 begin
+  ShowMessage('Please tell me how I can improve this product.');
+  sName:= InputBox('Name','Please enter your name:','');
+  sMessage:= InputBox('Message','Please tell me how to improve this product.','');
   tcpsrvrDefinitions.Close;
+  Close;
 end;
 
 function TfrmBGBInformer.BubbleSort(list: TStringList): TStringList;
