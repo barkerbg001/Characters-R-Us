@@ -204,14 +204,15 @@ end;
 
 procedure TfrmBGBInformer.cbbCharactersChange(Sender: TObject);
 var
-  sCharacter, sParth: string;
+  sCharacter, sParthTextfile, sParthPicture: string;
 begin
   sCharacter:= cbbCharacters.Text;
 
-  sParth:= 'Character/Textfile/'+ sCharacter + '.txt';
+  sParthTextFile:= 'Character/Textfile/'+ sCharacter + '.txt';
+  sParthPicture:= 'Character/Pictures/'+ sCharacter + '.bmp';
 
   //Code to check if textfile exist
-  AssignFile(TF, sParth);
+  AssignFile(TF, sParthTextfile);
   try
      Reset(TF);
 
@@ -229,13 +230,17 @@ begin
   end;
 
   //Code to check if image exist
-  try
-     //Code to load image into image component (imgCharacter)
-     imgCharacter.Picture.LoadFromFile('Character/Pictures/'+ sCharacter + '.bmp');
-  except
-     ShowMessage('Sorry, the picture does not exist');
-     imgCharacter.Picture.LoadFromFile('Character/Error.bmp');
-  end;
+  if FileExists(sParthPicture)
+  then begin
+         //Code to load image into image component (imgCharacter)
+         imgCharacter.Picture.LoadFromFile(sParthPicture);
+       end
+       else
+       begin
+         ShowMessage('Sorry, the picture does not exist');
+         imgCharacter.Picture.LoadFromFile('Character/Error.bmp');
+       end;
+
 end;
 
 procedure TfrmBGBInformer.cbbDefinitionChange(Sender: TObject);
