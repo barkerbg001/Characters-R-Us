@@ -5,7 +5,7 @@ interface
 uses
   Windows, Messages, SysUtils, Variants, Classes, Graphics, Controls, Forms,
   Dialogs, ComCtrls, StdCtrls, ExtCtrls, Buttons, Sockets, OleCtrls, SHDocVw,
-  CheckLst, Calculator_u, ToolWin;
+  CheckLst, Calculator_u, ToolWin, MPlayer;
 
 type
   TfrmBGBInformer = class(TForm)
@@ -50,6 +50,14 @@ type
     memoFarewellMessage: TMemo;
     imgFarewell: TImage;
     btnClose: TButton;
+    grpbxVideoTitle: TGroupBox;
+    pnlVideoTitle: TPanel;
+    pnlMiddle: TPanel;
+    grpbxBottom: TGroupBox;
+    btbtnLoad: TBitBtn;
+    mdplyrMPlayer: TMediaPlayer;
+    rgpOptions: TRadioGroup;
+    dlgOpenMedia: TOpenDialog;
     procedure btbtnHelpFileCharactersClick(Sender: TObject);
     procedure btbtnCloseCharactersClick(Sender: TObject);
     procedure btbtnBackToCharactersPageClick(Sender: TObject);
@@ -69,6 +77,7 @@ type
     procedure lstPicturesOptionsClick(Sender: TObject);
     procedure edtNavigateChange(Sender: TObject);
     procedure rgpWebBrowserOptionsClick(Sender: TObject);
+    procedure btbtnLoadClick(Sender: TObject);
   private
     { Private declarations }
     procedure closeApp;
@@ -150,6 +159,16 @@ begin
       rchdtHelpOutput.Lines.Add(sOneLine);
     end;
   CloseFile(TF);
+end;
+
+procedure TfrmBGBInformer.btbtnLoadClick(Sender: TObject);
+begin
+  if (dlgOpenMedia.Execute) then
+ begin
+   mdplyrMPlayer.FileName:= dlgOpenMedia.FileName;
+   pnlVideoTitle.Caption:= ExtractFileName(dlgOpenMedia.FileName);
+   mdplyrMPlayer.Open;
+ end;
 end;
 
 procedure TfrmBGBInformer.btnCloseClick(Sender: TObject);

@@ -20,7 +20,7 @@ object frmBGBInformer: TfrmBGBInformer
     Top = 0
     Width = 769
     Height = 416
-    ActivePage = tbshtCalendar
+    ActivePage = tbshtVideos
     Align = alClient
     TabOrder = 0
     object tbshtWelcome: TTabSheet
@@ -299,6 +299,97 @@ object frmBGBInformer: TfrmBGBInformer
     object tbshtVideos: TTabSheet
       Caption = 'Videos'
       ImageIndex = 5
+      object grpbxVideoTitle: TGroupBox
+        Left = 0
+        Top = 0
+        Width = 761
+        Height = 388
+        Align = alClient
+        Caption = 'Load the Video:'
+        TabOrder = 0
+        ExplicitLeft = 104
+        ExplicitTop = 24
+        ExplicitWidth = 185
+        ExplicitHeight = 105
+        object pnlVideoTitle: TPanel
+          Left = 2
+          Top = 15
+          Width = 757
+          Height = 41
+          Align = alTop
+          TabOrder = 0
+          ExplicitLeft = 176
+          ExplicitTop = 40
+          ExplicitWidth = 185
+        end
+        object pnlMiddle: TPanel
+          Left = 2
+          Top = 56
+          Width = 572
+          Height = 225
+          Align = alClient
+          TabOrder = 1
+          ExplicitLeft = 160
+          ExplicitTop = 88
+          ExplicitWidth = 185
+          ExplicitHeight = 41
+        end
+        object grpbxBottom: TGroupBox
+          Left = 2
+          Top = 281
+          Width = 757
+          Height = 105
+          Align = alBottom
+          Caption = 'Options:'
+          TabOrder = 3
+          ExplicitLeft = 280
+          ExplicitTop = 328
+          ExplicitWidth = 185
+          DesignSize = (
+            757
+            105)
+          object btbtnLoad: TBitBtn
+            Left = 2
+            Top = 15
+            Width = 75
+            Height = 88
+            Align = alLeft
+            Caption = '&Load'
+            DoubleBuffered = True
+            Kind = bkIgnore
+            ParentDoubleBuffered = False
+            TabOrder = 0
+            OnClick = btbtnLoadClick
+            ExplicitLeft = 10
+            ExplicitTop = 11
+          end
+          object mdplyrMPlayer: TMediaPlayer
+            Left = 83
+            Top = 19
+            Width = 667
+            Height = 83
+            Anchors = []
+            AutoOpen = True
+            TabOrder = 1
+          end
+        end
+        object rgpOptions: TRadioGroup
+          Left = 574
+          Top = 56
+          Width = 185
+          Height = 225
+          Align = alRight
+          Caption = 'Options:'
+          Items.Strings = (
+            'Back to Start'
+            'Help'
+            'Close')
+          TabOrder = 2
+          ExplicitLeft = 616
+          ExplicitTop = 80
+          ExplicitHeight = 105
+        end
+      end
     end
     object tbshtCalendar: TTabSheet
       Caption = 'Calendar'
@@ -1371,5 +1462,9 @@ object frmBGBInformer: TfrmBGBInformer
     OnAccept = tcpsrvrDefinitionsAccept
     Left = 528
     Top = 128
+  end
+  object dlgOpenMedia: TOpenDialog
+    Left = 632
+    Top = 8
   end
 end
