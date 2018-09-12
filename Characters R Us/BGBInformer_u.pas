@@ -405,7 +405,7 @@ begin
 
     slDefinitionsList.SaveToFile('Lists/DefinitionList.txt');
 
-    ShowMessage('Files found: ' + IntToStr(slDefinitionsList.Count));
+    //ShowMessage('Files found: ' + IntToStr(slDefinitionsList.Count));
   finally
     slDefinitionsList.Free;
   end;
@@ -417,7 +417,7 @@ begin
 
     slCharacterList.SaveToFile('Lists/CharacterList.txt');
 
-    ShowMessage('Files found: ' + IntToStr(slCharacterList.Count));
+    //ShowMessage('Files found: ' + IntToStr(slCharacterList.Count));
   finally
     slCharacterList.Free;
   end;
