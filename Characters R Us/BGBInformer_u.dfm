@@ -20,7 +20,7 @@ object frmBGBInformer: TfrmBGBInformer
     Top = 0
     Width = 769
     Height = 416
-    ActivePage = tbshtVideos
+    ActivePage = tbshtWelcome
     Align = alClient
     TabOrder = 0
     object tbshtWelcome: TTabSheet
