@@ -370,6 +370,9 @@ object frmBGBInformer: TfrmBGBInformer
             Height = 83
             Anchors = []
             AutoOpen = True
+            FileName = 
+              'C:\Users\Br\Documents\GitHub Projects\Characters-R-Us\Characters' +
+              ' R Us\Videos\Baymax.wmv'
             TabOrder = 1
           end
         end
