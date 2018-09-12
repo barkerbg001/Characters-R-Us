@@ -8,7 +8,6 @@ Character/Textfile/\Captain Marvel Origins.txt
 Character/Textfile/\Compassion Oath.txt
 Character/Textfile/\Death Oath.txt
 Character/Textfile/\Desdemona.txt
-Character/Textfile/\Details.txt
 Character/Textfile/\Duke of Venice.txt
 Character/Textfile/\Emilia.txt
 Character/Textfile/\Fear Oath.txt

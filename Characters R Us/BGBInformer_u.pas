@@ -207,32 +207,35 @@ var
   sCharacter, sParth: string;
 begin
   sCharacter:= cbbCharacters.Text;
+
   sParth:= 'Character/Textfile/'+ sCharacter + '.txt';
+
+  //Code to check if textfile exist
   AssignFile(TF, sParth);
-
-  If FileExists(sParth)<> True
-       then
-        begin
-          imgCharacter.Picture.LoadFromFile('Character/Pictures/'+ sCharacter + '.bmp');
-        end
-        else begin
-               imgCharacter.Picture.LoadFromFile('Character/Error.bmp');
-             end;
-
   try
      Reset(TF);
+
+     //Code to read a Textfile into the Richedit component (rchdtCharacter)
+     rchdtCharacter.Lines.Clear;
+     while not Eof(TF) do
+       begin
+         Readln(TF, sOneLine);
+         rchdtCharacter.Lines.Add(sOneLine);
+       end;
+     CloseFile(TF);
   except
      ShowMessage('Sorry, the text file does not exist in this folder.');
      Exit;
   end;
 
-  rchdtCharacter.Lines.Clear;
-  while not Eof(TF) do
-    begin
-      Readln(TF, sOneLine);
-      rchdtCharacter.Lines.Add(sOneLine);
-    end;
-  CloseFile(TF);
+  //Code to check if image exist
+  try
+     //Code to load image into image component (imgCharacter)
+     imgCharacter.Picture.LoadFromFile('Character/Pictures/'+ sCharacter + '.bmp');
+  except
+     ShowMessage('Sorry, the picture does not exist');
+     imgCharacter.Picture.LoadFromFile('Character/Error.bmp');
+  end;
 end;
 
 procedure TfrmBGBInformer.cbbDefinitionChange(Sender: TObject);
