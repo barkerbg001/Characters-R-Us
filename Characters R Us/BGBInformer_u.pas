@@ -44,6 +44,10 @@ type
     imgPictureDisplay: TImage;
     grpbxChooseImage: TGroupBox;
     lstPicturesOptions: TCheckListBox;
+    grpbxWebBrowserInput: TGroupBox;
+    edtNavigate: TEdit;
+    wbrBrowser: TWebBrowser;
+    rgpWebBrowserOptions: TRadioGroup;
     procedure btbtnHelpFileCharactersClick(Sender: TObject);
     procedure btbtnCloseCharactersClick(Sender: TObject);
     procedure btbtnBackToCharactersPageClick(Sender: TObject);
@@ -61,6 +65,8 @@ type
     procedure rgpWelcomeOptionsClick(Sender: TObject);
     procedure rgpPicturesOptionsClick(Sender: TObject);
     procedure lstPicturesOptionsClick(Sender: TObject);
+    procedure edtNavigateChange(Sender: TObject);
+    procedure rgpWebBrowserOptionsClick(Sender: TObject);
   private
     { Private declarations }
     procedure closeApp;
@@ -240,7 +246,6 @@ begin
          ShowMessage('Sorry, the picture does not exist');
          imgCharacter.Picture.LoadFromFile('Character/Error.bmp');
        end;
-
 end;
 
 procedure TfrmBGBInformer.cbbDefinitionChange(Sender: TObject);
@@ -294,6 +299,11 @@ begin
 
   tbshtDefinitions.TabVisible:= True;
   tbshtDefinitions.Show;
+end;
+
+procedure TfrmBGBInformer.edtNavigateChange(Sender: TObject);
+begin
+  wbrBrowser.Navigate(edtNavigate.Text);
 end;
 
 procedure TfrmBGBInformer.FindFiles(StartDir,
@@ -668,6 +678,21 @@ Calender
 Calculator
 Pictures
 Exit}
+procedure TfrmBGBInformer.rgpWebBrowserOptionsClick(Sender: TObject);
+begin
+  case rgpWebBrowserOptions.ItemIndex of
+  0: begin
+       backToStart;
+     end;
+  1: begin
+       helpPage;
+     end;
+  2: begin
+       closeApp;
+     end;
+  end;
+end;
+
 procedure TfrmBGBInformer.rgpWelcomeOptionsClick(Sender: TObject);
 begin
   case rgpWelcomeOptions.ItemIndex of

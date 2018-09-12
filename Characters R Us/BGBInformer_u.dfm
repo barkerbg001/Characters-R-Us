@@ -20,7 +20,7 @@ object frmBGBInformer: TfrmBGBInformer
     Top = 0
     Width = 769
     Height = 416
-    ActivePage = tbshtCharacters
+    ActivePage = tbshtWebBrowser
     Align = alClient
     TabOrder = 0
     object tbshtWelcome: TTabSheet
@@ -307,6 +307,58 @@ object frmBGBInformer: TfrmBGBInformer
     object tbshtWebBrowser: TTabSheet
       Caption = 'Web Browser'
       ImageIndex = 4
+      object grpbxWebBrowserInput: TGroupBox
+        Left = 0
+        Top = 0
+        Width = 761
+        Height = 41
+        Align = alTop
+        Caption = 'Please type in what you want to search:'
+        TabOrder = 0
+        object edtNavigate: TEdit
+          Left = 2
+          Top = 15
+          Width = 757
+          Height = 24
+          Align = alClient
+          TabOrder = 0
+          OnChange = edtNavigateChange
+          ExplicitHeight = 44
+        end
+      end
+      object wbrBrowser: TWebBrowser
+        Left = 0
+        Top = 41
+        Width = 761
+        Height = 263
+        Align = alClient
+        TabOrder = 1
+        ExplicitLeft = 136
+        ExplicitTop = 88
+        ExplicitWidth = 300
+        ExplicitHeight = 150
+        ControlData = {
+          4C000000A74E00002F1B00000000000000000000000000000000000000000000
+          000000004C000000000000000000000001000000E0D057007335CF11AE690800
+          2B2E126208000000000000004C0000000114020000000000C000000000000046
+          8000000000000000000000000000000000000000000000000000000000000000
+          00000000000000000100000000000000000000000000000000000000}
+      end
+      object rgpWebBrowserOptions: TRadioGroup
+        Left = 0
+        Top = 304
+        Width = 761
+        Height = 84
+        Align = alBottom
+        Caption = 'Options:'
+        Columns = 3
+        Items.Strings = (
+          'Back to Start'
+          'Help'
+          'Close')
+        TabOrder = 2
+        OnClick = rgpWebBrowserOptionsClick
+      end
     end
     object tbshtHelp: TTabSheet
       Caption = 'Help'
