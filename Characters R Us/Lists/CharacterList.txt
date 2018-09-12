@@ -1,0 +1,36 @@
+Character/Textfile/\Ancient One.txt
+Character/Textfile/\Aquaman Origins.txt
+Character/Textfile/\Batman Origins.txt
+Character/Textfile/\Batman Powers and Weapons.txt
+Character/Textfile/\Bianca.txt
+Character/Textfile/\Brabanzio.txt
+Character/Textfile/\Captain Marvel Origins.txt
+Character/Textfile/\Compassion Oath.txt
+Character/Textfile/\Death Oath.txt
+Character/Textfile/\Desdemona.txt
+Character/Textfile/\Details.txt
+Character/Textfile/\Duke of Venice.txt
+Character/Textfile/\Emilia.txt
+Character/Textfile/\Fear Oath.txt
+Character/Textfile/\Greed Oath.txt
+Character/Textfile/\Hope Oath.txt
+Character/Textfile/\Life Oath.txt
+Character/Textfile/\Love Oath.txt
+Character/Textfile/\Montano.txt
+Character/Textfile/\Othello.txt
+Character/Textfile/\Power Girl Allies.txt
+Character/Textfile/\Power Girl Enemies.txt
+Character/Textfile/\Power Girl Kryptonite.txt
+Character/Textfile/\Power Girl Origins.txt
+Character/Textfile/\Power Girl Personality.txt
+Character/Textfile/\Power Girl Powers and Abilities.txt
+Character/Textfile/\Rage Oath.txt
+Character/Textfile/\Roderigo.txt
+Character/Textfile/\Sinestro Origins.txt
+Character/Textfile/\Spiderman Introducing Spiderman.txt
+Character/Textfile/\Superman Origins.txt
+Character/Textfile/\The Clown.txt
+Character/Textfile/\The Flash Origins.txt
+Character/Textfile/\The Flash Speed Force.txt
+Character/Textfile/\Wally West.txt
+Character/Textfile/\Will Oath.txt
