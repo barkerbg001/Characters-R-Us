@@ -5,6 +5,7 @@ Character/Textfile/\Batman Powers and Weapons.txt
 Character/Textfile/\Bianca.txt
 Character/Textfile/\Brabanzio.txt
 Character/Textfile/\Captain Marvel Origins.txt
+Character/Textfile/\Carnage Early Life.txt
 Character/Textfile/\Compassion Oath.txt
 Character/Textfile/\Death Oath.txt
 Character/Textfile/\Desdemona.txt
