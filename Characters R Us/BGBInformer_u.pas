@@ -20,7 +20,6 @@ type
     tbshtFarewell: TTabSheet;
     tbshtCalendar: TTabSheet;
     memoMessages: TMemo;
-    rgpWelcomeOptions: TRadioGroup;
     imgCharacter: TImage;
     rchdtCharacter: TRichEdit;
     rgpCharacterOptions: TRadioGroup;
@@ -58,6 +57,9 @@ type
     mdplyrMPlayer: TMediaPlayer;
     rgpOptions: TRadioGroup;
     dlgOpenMedia: TOpenDialog;
+    grpbxWelcome: TGroupBox;
+    imgWelcome: TImage;
+    rgpWelcomeOptions: TRadioGroup;
     procedure btbtnHelpFileCharactersClick(Sender: TObject);
     procedure btbtnCloseCharactersClick(Sender: TObject);
     procedure btbtnBackToCharactersPageClick(Sender: TObject);

@@ -47,28 +47,51 @@ object frmBGBInformer: TfrmBGBInformer
         ParentFont = False
         TabOrder = 0
       end
-      object rgpWelcomeOptions: TRadioGroup
+      object grpbxWelcome: TGroupBox
         Left = 0
         Top = 113
         Width = 761
         Height = 275
         Align = alClient
-        Caption = 'Options:'
-        Color = clRed
-        Columns = 3
-        Items.Strings = (
-          'Characters'
-          'Definitions'
-          'Help'
-          'Surf The Web'
-          'Watch The Videos'
-          'Calender'
-          'Calculator'
-          'Pictures'
-          'Exit')
-        ParentColor = False
         TabOrder = 1
-        OnClick = rgpWelcomeOptionsClick
+        ExplicitLeft = 64
+        ExplicitTop = 168
+        ExplicitWidth = 185
+        ExplicitHeight = 105
+        object imgWelcome: TImage
+          Left = 2
+          Top = 15
+          Width = 255
+          Height = 258
+          Align = alLeft
+        end
+        object rgpWelcomeOptions: TRadioGroup
+          Left = 257
+          Top = 15
+          Width = 502
+          Height = 258
+          Align = alClient
+          Caption = 'Options:'
+          Color = clRed
+          Columns = 3
+          Items.Strings = (
+            'Characters'
+            'Definitions'
+            'Help'
+            'Surf The Web'
+            'Watch The Videos'
+            'Calender'
+            'Calculator'
+            'Pictures'
+            'Exit')
+          ParentColor = False
+          TabOrder = 0
+          OnClick = rgpWelcomeOptionsClick
+          ExplicitLeft = 0
+          ExplicitTop = 113
+          ExplicitWidth = 761
+          ExplicitHeight = 275
+        end
       end
     end
     object tbshtCharacters: TTabSheet
@@ -307,10 +330,6 @@ object frmBGBInformer: TfrmBGBInformer
         Align = alClient
         Caption = 'Load the Video:'
         TabOrder = 0
-        ExplicitLeft = 104
-        ExplicitTop = 24
-        ExplicitWidth = 185
-        ExplicitHeight = 105
         object pnlVideoTitle: TPanel
           Left = 2
           Top = 15
@@ -318,9 +337,6 @@ object frmBGBInformer: TfrmBGBInformer
           Height = 41
           Align = alTop
           TabOrder = 0
-          ExplicitLeft = 176
-          ExplicitTop = 40
-          ExplicitWidth = 185
         end
         object pnlMiddle: TPanel
           Left = 2
@@ -329,10 +345,6 @@ object frmBGBInformer: TfrmBGBInformer
           Height = 225
           Align = alClient
           TabOrder = 1
-          ExplicitLeft = 160
-          ExplicitTop = 88
-          ExplicitWidth = 185
-          ExplicitHeight = 41
         end
         object grpbxBottom: TGroupBox
           Left = 2
@@ -342,9 +354,6 @@ object frmBGBInformer: TfrmBGBInformer
           Align = alBottom
           Caption = 'Options:'
           TabOrder = 3
-          ExplicitLeft = 280
-          ExplicitTop = 328
-          ExplicitWidth = 185
           DesignSize = (
             757
             105)
@@ -360,8 +369,6 @@ object frmBGBInformer: TfrmBGBInformer
             ParentDoubleBuffered = False
             TabOrder = 0
             OnClick = btbtnLoadClick
-            ExplicitLeft = 10
-            ExplicitTop = 11
           end
           object mdplyrMPlayer: TMediaPlayer
             Left = 83
@@ -388,9 +395,6 @@ object frmBGBInformer: TfrmBGBInformer
             'Help'
             'Close')
           TabOrder = 2
-          ExplicitLeft = 616
-          ExplicitTop = 80
-          ExplicitHeight = 105
         end
       end
     end
@@ -417,7 +421,7 @@ object frmBGBInformer: TfrmBGBInformer
           Align = alClient
           TabOrder = 0
           OnChange = edtNavigateChange
-          ExplicitHeight = 44
+          ExplicitHeight = 21
         end
       end
       object wbrBrowser: TWebBrowser
@@ -1442,7 +1446,6 @@ object frmBGBInformer: TfrmBGBInformer
         ParentFont = False
         ReadOnly = True
         TabOrder = 0
-        ExplicitWidth = 1079
       end
       object btnClose: TButton
         Left = 0
@@ -1453,8 +1456,6 @@ object frmBGBInformer: TfrmBGBInformer
         Caption = 'Close'
         TabOrder = 1
         OnClick = btnCloseClick
-        ExplicitLeft = -3
-        ExplicitTop = 216
       end
     end
   end
