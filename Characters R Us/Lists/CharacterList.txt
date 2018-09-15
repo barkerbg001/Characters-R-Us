@@ -5,7 +5,26 @@ Character/Textfile/\Batman Powers and Weapons.txt
 Character/Textfile/\Bianca.txt
 Character/Textfile/\Brabanzio.txt
 Character/Textfile/\Captain Marvel Origins.txt
+Character/Textfile/\Carnage Deadpool vs Carnage.txt
 Character/Textfile/\Carnage Early Life.txt
+Character/Textfile/\Carnage Loss and Restoration of the Carnage Symbiote.txt
+Character/Textfile/\Carnage Maximum Carnage.txt
+Character/Textfile/\Carnage Meeting Venom.txt
+Character/Textfile/\Carnage Minimum Carnage.txt
+Character/Textfile/\Carnage Raft Break-Out.txt
+Character/Textfile/\Carnage Rebirth.txt
+Character/Textfile/\Carnage Superior Carnage.txt
+Character/Textfile/\Carnage Toxin.txt
+Character/Textfile/\Carnage USA.txt
+Character/Textfile/\Colleen Wing (Earth 616) Abilities.txt
+Character/Textfile/\Colleen Wing (Earth 616) Civil War Initiative.txt
+Character/Textfile/\Colleen Wing (Earth 616) Early Life.txt
+Character/Textfile/\Colleen Wing (Earth 616) Iron Fist.txt
+Character/Textfile/\Colleen Wing (Earth 616) Knightwing Restorations, Ltd.txt
+Character/Textfile/\Colleen Wing (Earth 616) Powers.txt
+Character/Textfile/\Colleen Wing (Earth 616) Ricadonna.txt
+Character/Textfile/\Colleen Wing (Earth 616) Strength Level.txt
+Character/Textfile/\Colleen Wing (Earth 616) Weapons.txt
 Character/Textfile/\Compassion Oath.txt
 Character/Textfile/\Death Oath.txt
 Character/Textfile/\Desdemona.txt
