@@ -5,7 +5,7 @@ interface
 uses
   Windows, Messages, SysUtils, Variants, Classes, Graphics, Controls, Forms,
   Dialogs, ComCtrls, StdCtrls, ExtCtrls, Buttons, Sockets, OleCtrls, SHDocVw,
-  CheckLst, Calculator_u, ToolWin, MPlayer;
+  CheckLst, Calculator_u, ToolWin, MPlayer, ShellAPI;
 
 type
   TfrmBGBInformer = class(TForm)
@@ -14,11 +14,9 @@ type
     tbshtCharacters: TTabSheet;
     tbshtHelp: TTabSheet;
     tbshtDefinitions: TTabSheet;
-    tbshtWebBrowser: TTabSheet;
     tbshtVideos: TTabSheet;
     tbshtPictures: TTabSheet;
     tbshtFarewell: TTabSheet;
-    tbshtCalendar: TTabSheet;
     memoMessages: TMemo;
     imgCharacter: TImage;
     rchdtCharacter: TRichEdit;
@@ -40,12 +38,6 @@ type
     cbbPicturesChoice: TComboBox;
     rgpPicturesOptions: TRadioGroup;
     imgPictureDisplay: TImage;
-    grpbxChooseImage: TGroupBox;
-    lstPicturesOptions: TCheckListBox;
-    grpbxWebBrowserInput: TGroupBox;
-    edtNavigate: TEdit;
-    wbrBrowser: TWebBrowser;
-    rgpWebBrowserOptions: TRadioGroup;
     memoFarewellMessage: TMemo;
     imgFarewell: TImage;
     btnClose: TButton;
@@ -60,6 +52,10 @@ type
     grpbxWelcome: TGroupBox;
     imgWelcome: TImage;
     rgpWelcomeOptions: TRadioGroup;
+    tbshtGames: TTabSheet;
+    memoGames: TMemo;
+    rgpGame: TRadioGroup;
+    btbtnLoadPicture: TBitBtn;
     procedure btbtnHelpFileCharactersClick(Sender: TObject);
     procedure btbtnCloseCharactersClick(Sender: TObject);
     procedure btbtnBackToCharactersPageClick(Sender: TObject);
@@ -76,20 +72,19 @@ type
     procedure rgpOptionsDefinitionClick(Sender: TObject);
     procedure rgpWelcomeOptionsClick(Sender: TObject);
     procedure rgpPicturesOptionsClick(Sender: TObject);
-    procedure lstPicturesOptionsClick(Sender: TObject);
-    procedure edtNavigateChange(Sender: TObject);
-    procedure rgpWebBrowserOptionsClick(Sender: TObject);
     procedure btbtnLoadClick(Sender: TObject);
+    procedure rgpGameClick(Sender: TObject);
+    procedure btbtnLoadPictureClick(Sender: TObject);
   private
     { Private declarations }
+    procedure tabInVisible;
     procedure closeApp;
     procedure backToStart;
     procedure helpPage;
     procedure picturePage;
     procedure calculatorPage;
-    procedure calendarPage;
+    procedure gamesPage;
     procedure videosPage;
-    procedure webPage;
     procedure definitionPage;
     procedure characterPage;
     procedure loadPicture(sPictures:string; iNumber: Integer);
@@ -113,15 +108,6 @@ implementation
 
 procedure TfrmBGBInformer.backToStart;
 begin
-  tbshtHelp.TabVisible:= False;
-  tbshtVideos.TabVisible:= False;
-  tbshtPictures.TabVisible:= False;
-  tbshtCalendar.TabVisible:= False;
-  tbshtDefinitions.TabVisible:= False;
-  tbshtWebBrowser.TabVisible:= False;
-  tbshtFarewell.TabVisible:= False;
-
-  tbshtWelcome.TabVisible:= True;
   tbshtWelcome.Show;
 end;
 
@@ -131,9 +117,8 @@ begin
   tbshtHelp.TabVisible:= False;
   tbshtVideos.TabVisible:= False;
   tbshtPictures.TabVisible:= False;
-  tbshtCalendar.TabVisible:= False;
+  tbshtGames.TabVisible:= False;
   tbshtDefinitions.TabVisible:= False;
-  tbshtWebBrowser.TabVisible:= False;
   tbshtFarewell.TabVisible:= False;
 
   tbshtCharacters.TabVisible:= True;
@@ -173,6 +158,25 @@ begin
  end;
 end;
 
+procedure TfrmBGBInformer.btbtnLoadPictureClick(Sender: TObject);
+var
+  iRandom: Integer;
+  sPicture: string;
+begin
+  sPicture:= cbbPicturesChoice.Text;
+
+  if sPicture = ''
+  then begin
+         ShowMessage('Please choose a option');
+         Exit;
+       end;
+
+
+  Randomize;
+  iRandom:= Random(36)+1;
+  loadPicture(sPicture,iRandom);
+end;
+
 procedure TfrmBGBInformer.btnCloseClick(Sender: TObject);
 var
   sName, sMessage: string;
@@ -208,33 +212,13 @@ end;
 
 procedure TfrmBGBInformer.calculatorPage;
 begin
-  tbshtHelp.TabVisible:= False;
-  tbshtVideos.TabVisible:= False;
-  tbshtPictures.TabVisible:= False;
-  tbshtWelcome.TabVisible:= False;
-  tbshtFarewell.TabVisible:= False;
-  tbshtCalendar.TabVisible:= False;
-  tbshtCharacters.TabVisible:= False;
-  tbshtDefinitions.TabVisible:= False;
-  tbshtWebBrowser.TabVisible:= False;
-
   frmCalculator.ShowModal;
   backToStart;
 end;
 
-procedure TfrmBGBInformer.calendarPage;
+procedure TfrmBGBInformer.gamesPage;
 begin
-  tbshtHelp.TabVisible:= False;
-  tbshtVideos.TabVisible:= False;
-  tbshtPictures.TabVisible:= False;
-  tbshtWelcome.TabVisible:= False;
-  tbshtFarewell.TabVisible:= False;
-  tbshtCharacters.TabVisible:= False;
-  tbshtDefinitions.TabVisible:= False;
-  tbshtWebBrowser.TabVisible:= False;
-
-  tbshtCalendar.TabVisible:= True;
-  tbshtCalendar.Show;
+  tbshtGames.Show;
 end;
 
 procedure TfrmBGBInformer.cbbCharactersChange(Sender: TObject);
@@ -287,16 +271,6 @@ end;
 
 procedure TfrmBGBInformer.characterPage;
 begin
-  tbshtHelp.TabVisible:= False;
-  tbshtVideos.TabVisible:= False;
-  tbshtPictures.TabVisible:= False;
-  tbshtWelcome.TabVisible:= False;
-  tbshtFarewell.TabVisible:= False;
-  tbshtCalendar.TabVisible:= False;
-  tbshtDefinitions.TabVisible:= False;
-  tbshtWebBrowser.TabVisible:= False;
-
-  tbshtCharacters.TabVisible:= True;
   tbshtCharacters.Show;
 end;
 
@@ -304,16 +278,6 @@ procedure TfrmBGBInformer.closeApp;
 var
   sParthPicture: string;
 begin
-  tbshtWelcome.TabVisible:= False;
-  tbshtHelp.TabVisible:= False;
-  tbshtVideos.TabVisible:= False;
-  tbshtPictures.TabVisible:= False;
-  tbshtCalendar.TabVisible:= False;
-  tbshtCharacters.TabVisible:= False;
-  tbshtDefinitions.TabVisible:= False;
-  tbshtWebBrowser.TabVisible:= False;
-
-  tbshtFarewell.TabVisible:= True;
   tbshtFarewell.Show;
 
   sParthPicture:= 'Pictures/Farewell.bmp';
@@ -331,22 +295,7 @@ end;
 
 procedure TfrmBGBInformer.definitionPage;
 begin
-  tbshtHelp.TabVisible:= False;
-  tbshtVideos.TabVisible:= False;
-  tbshtPictures.TabVisible:= False;
-  tbshtWelcome.TabVisible:= False;
-  tbshtFarewell.TabVisible:= False;
-  tbshtCalendar.TabVisible:= False;
-  tbshtCharacters.TabVisible:= False;
-  tbshtWebBrowser.TabVisible:= False;
-
-  tbshtDefinitions.TabVisible:= True;
   tbshtDefinitions.Show;
-end;
-
-procedure TfrmBGBInformer.edtNavigateChange(Sender: TObject);
-begin
-  wbrBrowser.Navigate(edtNavigate.Text);
 end;
 
 procedure TfrmBGBInformer.FindFiles(StartDir,
@@ -392,6 +341,8 @@ end;
 procedure TfrmBGBInformer.FormActivate(Sender: TObject);
 begin
   tcpsrvrDefinitions.Open;
+  tabInVisible;
+  backToStart;
 end;
 
 procedure TfrmBGBInformer.FormCreate(Sender: TObject);
@@ -492,16 +443,6 @@ end;
 
 procedure TfrmBGBInformer.helpPage;
 begin
-  tbshtVideos.TabVisible:= False;
-  tbshtWelcome.TabVisible:= False;
-  tbshtPictures.TabVisible:= False;
-  tbshtFarewell.TabVisible:= False;
-  tbshtCalendar.TabVisible:= False;
-  tbshtCharacters.TabVisible:= False;
-  tbshtDefinitions.TabVisible:= False;
-  tbshtWebBrowser.TabVisible:= False;
-
-  tbshtHelp.TabVisible:= True;
   tbshtHelp.Show;
 end;
 
@@ -520,145 +461,10 @@ begin
                ShowMessage('Sorry, Picture does not exist in this folder');
                Exit;
              end;
-
-  lstPicturesOptions.Checked[iNumber]:= False;
-end;
-
-procedure TfrmBGBInformer.lstPicturesOptionsClick(Sender: TObject);
-var
- sLoadPictures: string;
-begin
-  sLoadPictures:= cbbPicturesChoice.Text;
-  if sLoadPictures ='' then
-  begin
-    ShowMessage('Please Choose a Option');
-    Exit;
-  end;
-
-  case lstPicturesOptions.ItemIndex of
-  0: begin
-       loadPicture(sLoadPictures, 1);
-     end;
-  1: begin
-       loadPicture(sLoadPictures, 2);
-     end;
-  2: begin
-       loadPicture(sLoadPictures, 3);
-     end;
-  3: begin
-       loadPicture(sLoadPictures, 4);
-     end;
-  4: begin
-       loadPicture(sLoadPictures, 5);
-     end;
-  5: begin
-       loadPicture(sLoadPictures, 6);
-     end;
-  6: begin
-       loadPicture(sLoadPictures, 7);
-     end;
-  7: begin
-       loadPicture(sLoadPictures, 8);
-     end;
-  8: begin
-       loadPicture(sLoadPictures, 9);
-     end;
-  9: begin
-       loadPicture(sLoadPictures, 10);
-     end;
-  10: begin
-       loadPicture(sLoadPictures, 11);
-     end;
-  11: begin
-       loadPicture(sLoadPictures, 12);
-     end;
-  12: begin
-       loadPicture(sLoadPictures, 13);
-     end;
-  13: begin
-       loadPicture(sLoadPictures, 14);
-     end;
-  14: begin
-       loadPicture(sLoadPictures, 15);
-     end;
-  15: begin
-       loadPicture(sLoadPictures, 16);
-     end;
-  16: begin
-       loadPicture(sLoadPictures, 17);
-     end;
-  17: begin
-       loadPicture(sLoadPictures, 18);
-     end;
-  18: begin
-       loadPicture(sLoadPictures, 19);
-     end;
-  19: begin
-       loadPicture(sLoadPictures, 20);
-     end;
-  20: begin
-       loadPicture(sLoadPictures, 21);
-     end;
-  21: begin
-       loadPicture(sLoadPictures, 22);
-     end;
-  22: begin
-       loadPicture(sLoadPictures, 23);
-     end;
-  23: begin
-       loadPicture(sLoadPictures, 24);
-     end;
-  24: begin
-       loadPicture(sLoadPictures, 25);
-     end;
-  25: begin
-       loadPicture(sLoadPictures, 26);
-     end;
-  26: begin
-       loadPicture(sLoadPictures, 27);
-     end;
-  27: begin
-       loadPicture(sLoadPictures, 28);
-     end;
-  28: begin
-       loadPicture(sLoadPictures, 29);
-     end;
-  29: begin
-       loadPicture(sLoadPictures, 30);
-     end;
-  30: begin
-       loadPicture(sLoadPictures, 31);
-     end;
-  31: begin
-       loadPicture(sLoadPictures, 32);
-     end;
-  32: begin
-       loadPicture(sLoadPictures, 33);
-     end;
-  33: begin
-       loadPicture(sLoadPictures, 34);
-     end;
-  34: begin
-       loadPicture(sLoadPictures, 35);
-     end;
-  35: begin
-       loadPicture(sLoadPictures, 36);
-     end;
-  end;
 end;
 
 procedure TfrmBGBInformer.picturePage;
 begin
-  tbshtHelp.TabVisible:= False;
-  tbshtVideos.TabVisible:= False;
-  tbshtWelcome.TabVisible:= False;
-  tbshtFarewell.TabVisible:= False;
-  tbshtCalendar.TabVisible:= False;
-  tbshtCharacters.TabVisible:= False;
-  tbshtDefinitions.TabVisible:= False;
-  tbshtWebBrowser.TabVisible:= False;
-
-  tbshtPictures.TabVisible:= True;
   tbshtPictures.Show;
 end;
 
@@ -681,6 +487,23 @@ begin
        closeApp;
      end;
   end;
+end;
+
+procedure TfrmBGBInformer.rgpGameClick(Sender: TObject);
+begin
+  case rgpGame.ItemIndex of
+  0: begin
+       ShellExecute(0, 'open', PChar('Tetris.bat'),nil,nil,SW_HIDE);
+     end;
+  1: begin
+       helpPage;
+     end;
+  2: begin
+       closeApp;
+     end;
+  end;
+
+  //rgpGame.ItemIndex:= -1;
 end;
 
 procedure TfrmBGBInformer.rgpOptionsDefinitionClick(Sender: TObject);
@@ -712,30 +535,6 @@ begin
   end;
 end;
 
-{Characters
-Definitions
-Help
-Surf The Web
-Watch The Videos
-Calender
-Calculator
-Pictures
-Exit}
-procedure TfrmBGBInformer.rgpWebBrowserOptionsClick(Sender: TObject);
-begin
-  case rgpWebBrowserOptions.ItemIndex of
-  0: begin
-       backToStart;
-     end;
-  1: begin
-       helpPage;
-     end;
-  2: begin
-       closeApp;
-     end;
-  end;
-end;
-
 procedure TfrmBGBInformer.rgpWelcomeOptionsClick(Sender: TObject);
 begin
   case rgpWelcomeOptions.ItemIndex of
@@ -749,24 +548,33 @@ begin
        helpPage;
      end;
   3: begin
-       webPage;
-     end;
-  4: begin
        videosPage;
      end;
-  5: begin
-       calendarPage;
+  4: begin
+       gamesPage;
      end;
-  6: begin
+  5: begin
        calculatorPage;
      end;
-  7: begin
-       picturePage;
+  6: begin
+       picturePage
      end;
-  8: begin
+  7: begin
        closeApp;
      end;
   end;
+end;
+
+procedure TfrmBGBInformer.tabInVisible;
+begin
+  tbshtHelp.TabVisible:= False;
+  tbshtGames.TabVisible:= False;
+  tbshtVideos.TabVisible:= False;
+  tbshtPictures.TabVisible:= False;
+  tbshtWelcome.TabVisible:= False;
+  tbshtFarewell.TabVisible:= False;
+  tbshtCharacters.TabVisible:= False;
+  tbshtDefinitions.TabVisible:= False;
 end;
 
 procedure TfrmBGBInformer.tbshtDefinitionsHide(Sender: TObject);
@@ -823,32 +631,7 @@ end;
 
 procedure TfrmBGBInformer.videosPage;
 begin
-  tbshtHelp.TabVisible:= False;
-  tbshtPictures.TabVisible:= False;
-  tbshtWelcome.TabVisible:= False;
-  tbshtFarewell.TabVisible:= False;
-  tbshtCalendar.TabVisible:= False;
-  tbshtCharacters.TabVisible:= False;
-  tbshtDefinitions.TabVisible:= False;
-  tbshtWebBrowser.TabVisible:= False;
-
-  tbshtVideos.TabVisible:= True;
   tbshtVideos.Show;
-end;
-
-procedure TfrmBGBInformer.webPage;
-begin
-  tbshtHelp.TabVisible:= False;
-  tbshtVideos.TabVisible:= False;
-  tbshtPictures.TabVisible:= False;
-  tbshtWelcome.TabVisible:= False;
-  tbshtFarewell.TabVisible:= False;
-  tbshtCalendar.TabVisible:= False;
-  tbshtCharacters.TabVisible:= False;
-  tbshtDefinitions.TabVisible:= False;
-
-  tbshtWebBrowser.TabVisible:= True;
-  tbshtWebBrowser.Show;
 end;
 
 end.

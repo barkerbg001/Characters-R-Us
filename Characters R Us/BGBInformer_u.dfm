@@ -20,7 +20,7 @@ object frmBGBInformer: TfrmBGBInformer
     Top = 0
     Width = 769
     Height = 416
-    ActivePage = tbshtFarewell
+    ActivePage = tbshtWelcome
     Align = alClient
     TabOrder = 0
     object tbshtWelcome: TTabSheet
@@ -54,10 +54,6 @@ object frmBGBInformer: TfrmBGBInformer
         Height = 275
         Align = alClient
         TabOrder = 1
-        ExplicitLeft = 64
-        ExplicitTop = 168
-        ExplicitWidth = 185
-        ExplicitHeight = 105
         object imgWelcome: TImage
           Left = 2
           Top = 15
@@ -78,19 +74,14 @@ object frmBGBInformer: TfrmBGBInformer
             'Characters'
             'Definitions'
             'Help'
-            'Surf The Web'
             'Watch The Videos'
-            'Calender'
+            'Games'
             'Calculator'
             'Pictures'
             'Exit')
           ParentColor = False
           TabOrder = 0
           OnClick = rgpWelcomeOptionsClick
-          ExplicitLeft = 0
-          ExplicitTop = 113
-          ExplicitWidth = 761
-          ExplicitHeight = 275
         end
       end
     end
@@ -221,10 +212,11 @@ object frmBGBInformer: TfrmBGBInformer
       object imgPictureDisplay: TImage
         Left = 0
         Top = 49
-        Width = 265
+        Width = 761
         Height = 255
-        Align = alLeft
+        Align = alClient
         Stretch = True
+        ExplicitWidth = 265
         ExplicitHeight = 247
       end
       object grpbxPicturesChoice: TGroupBox
@@ -238,12 +230,25 @@ object frmBGBInformer: TfrmBGBInformer
         object cbbPicturesChoice: TComboBox
           Left = 2
           Top = 15
-          Width = 757
+          Width = 654
           Height = 21
           Align = alClient
+          Style = csDropDownList
           TabOrder = 0
           Items.Strings = (
             'Kelli Berglund')
+        end
+        object btbtnLoadPicture: TBitBtn
+          Left = 656
+          Top = 15
+          Width = 103
+          Height = 32
+          Align = alRight
+          Caption = 'Load'
+          DoubleBuffered = True
+          ParentDoubleBuffered = False
+          TabOrder = 1
+          OnClick = btbtnLoadPictureClick
         end
       end
       object rgpPicturesOptions: TRadioGroup
@@ -258,65 +263,50 @@ object frmBGBInformer: TfrmBGBInformer
           'Back to Start'
           'Help'
           'Close')
-        TabOrder = 2
+        TabOrder = 1
         OnClick = rgpPicturesOptionsClick
       end
-      object grpbxChooseImage: TGroupBox
-        Left = 265
-        Top = 49
-        Width = 496
-        Height = 255
+    end
+    object tbshtGames: TTabSheet
+      Caption = 'Games'
+      ImageIndex = 9
+      object memoGames: TMemo
+        Left = 0
+        Top = 0
+        Width = 761
+        Height = 113
+        Align = alTop
+        BevelInner = bvLowered
+        Color = clBackground
+        Enabled = False
+        Font.Charset = ANSI_CHARSET
+        Font.Color = clYellow
+        Font.Height = -27
+        Font.Name = 'Bradley Hand ITC'
+        Font.Style = [fsBold, fsItalic, fsUnderline]
+        Lines.Strings = (
+          'Welcome To The Game Page'
+          'Please Choose a Game you want to play:')
+        ParentFont = False
+        TabOrder = 0
+      end
+      object rgpGame: TRadioGroup
+        Left = 0
+        Top = 113
+        Width = 761
+        Height = 275
         Align = alClient
-        Caption = 'Choose a Image:'
+        Caption = 'rgpGame'
+        Items.Strings = (
+          'Tetris'
+          'Help'
+          'Close')
         TabOrder = 1
-        object lstPicturesOptions: TCheckListBox
-          Left = 2
-          Top = 15
-          Width = 492
-          Height = 238
-          Align = alClient
-          Columns = 2
-          ItemHeight = 13
-          Items.Strings = (
-            'Picture 1'
-            'Picture 2'
-            'Picture 3'
-            'Picture 4'
-            'Picture 5'
-            'Picture 6'
-            'Picture 7'
-            'Picture 8'
-            'Picture 9'
-            'Picture 10'
-            'Picture 11'
-            'Picture 12'
-            'Picture 13'
-            'Picture 14'
-            'Picture 15'
-            'Picture 16'
-            'Picture 17'
-            'Picture 18'
-            'Picture 19'
-            'Picture 20'
-            'Picture 21'
-            'Picture 22'
-            'Picture 23'
-            'Picture 24'
-            'Picture 25'
-            'Picture 26'
-            'Picture 27'
-            'Picture 28'
-            'Picture 29'
-            'Picture 30'
-            'Picture 31'
-            'Picture 32'
-            'Picture 33'
-            'Picture 34'
-            'Picture 35'
-            'Picture 36')
-          TabOrder = 0
-          OnClick = lstPicturesOptionsClick
-        end
+        OnClick = rgpGameClick
+        ExplicitLeft = 208
+        ExplicitTop = 160
+        ExplicitWidth = 185
+        ExplicitHeight = 105
       end
     end
     object tbshtVideos: TTabSheet
@@ -396,66 +386,6 @@ object frmBGBInformer: TfrmBGBInformer
             'Close')
           TabOrder = 2
         end
-      end
-    end
-    object tbshtCalendar: TTabSheet
-      Caption = 'Calendar'
-      ImageIndex = 8
-    end
-    object tbshtWebBrowser: TTabSheet
-      Caption = 'Web Browser'
-      ImageIndex = 4
-      object grpbxWebBrowserInput: TGroupBox
-        Left = 0
-        Top = 0
-        Width = 761
-        Height = 41
-        Align = alTop
-        Caption = 'Please type in what you want to search:'
-        TabOrder = 0
-        object edtNavigate: TEdit
-          Left = 2
-          Top = 15
-          Width = 757
-          Height = 24
-          Align = alClient
-          TabOrder = 0
-          OnChange = edtNavigateChange
-          ExplicitHeight = 21
-        end
-      end
-      object wbrBrowser: TWebBrowser
-        Left = 0
-        Top = 41
-        Width = 761
-        Height = 263
-        Align = alClient
-        TabOrder = 1
-        ExplicitLeft = 136
-        ExplicitTop = 88
-        ExplicitWidth = 300
-        ExplicitHeight = 150
-        ControlData = {
-          4C000000A74E00002F1B00000000000000000000000000000000000000000000
-          000000004C000000000000000000000001000000E0D057007335CF11AE690800
-          2B2E126208000000000000004C0000000114020000000000C000000000000046
-          8000000000000000000000000000000000000000000000000000000000000000
-          00000000000000000100000000000000000000000000000000000000}
-      end
-      object rgpWebBrowserOptions: TRadioGroup
-        Left = 0
-        Top = 304
-        Width = 761
-        Height = 84
-        Align = alBottom
-        Caption = 'Options:'
-        Columns = 3
-        Items.Strings = (
-          'Back to Start'
-          'Help'
-          'Close')
-        TabOrder = 2
-        OnClick = rgpWebBrowserOptionsClick
       end
     end
     object tbshtHelp: TTabSheet
