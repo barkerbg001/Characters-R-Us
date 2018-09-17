@@ -54,8 +54,17 @@ type
     rgpWelcomeOptions: TRadioGroup;
     tbshtGames: TTabSheet;
     memoGames: TMemo;
-    rgpGame: TRadioGroup;
     btbtnLoadPicture: TBitBtn;
+    pnlLeftPicture: TPanel;
+    pnlRightPicture: TPanel;
+    grdpnlGameSelection: TGridPanel;
+    btbtnTetris: TBitBtn;
+    btbtnPacman: TBitBtn;
+    btbtnSonic: TBitBtn;
+    btbtnSnakes: TBitBtn;
+    btbtnBackToStart: TBitBtn;
+    btbtnHelp: TBitBtn;
+    btbtnClose: TBitBtn;
     procedure btbtnHelpFileCharactersClick(Sender: TObject);
     procedure btbtnCloseCharactersClick(Sender: TObject);
     procedure btbtnBackToCharactersPageClick(Sender: TObject);
@@ -73,8 +82,9 @@ type
     procedure rgpWelcomeOptionsClick(Sender: TObject);
     procedure rgpPicturesOptionsClick(Sender: TObject);
     procedure btbtnLoadClick(Sender: TObject);
-    procedure rgpGameClick(Sender: TObject);
     procedure btbtnLoadPictureClick(Sender: TObject);
+    procedure rgpOptionsClick(Sender: TObject);
+    procedure btbtnTetrisClick(Sender: TObject);
   private
     { Private declarations }
     procedure tabInVisible;
@@ -175,6 +185,11 @@ begin
   Randomize;
   iRandom:= Random(36)+1;
   loadPicture(sPicture,iRandom);
+end;
+
+procedure TfrmBGBInformer.btbtnTetrisClick(Sender: TObject);
+begin
+  ShellExecute(0,'open',PChar('Tetris.bat'),nil,nil,SW_HIDE);
 end;
 
 procedure TfrmBGBInformer.btnCloseClick(Sender: TObject);
@@ -347,8 +362,9 @@ end;
 
 procedure TfrmBGBInformer.FormCreate(Sender: TObject);
 var
-  slDefinitionItems, slCharacterItems, slDefinitionsList, slCharacterList: TStringList;
-  sType: string;
+  slDefinitionItems, slCharacterItems, slPictureItems: TStringList;
+  slDefinitionsList, slCharacterList, slPictureList: TStringList;
+  sType, sCheck: string;
   iPos: Integer;
 begin
   //List all the Files contained in the definitions folder
@@ -373,6 +389,18 @@ begin
     //ShowMessage('Files found: ' + IntToStr(slCharacterList.Count));
   finally
     slCharacterList.Free;
+  end;
+
+  //List all the Files contained in the pictures folder
+  slPictureList := TStringList.Create;
+  try
+    FindFiles('Pictures/', '*.bmp',slPictureList);
+
+    slPictureList.SaveToFile('Lists/PictureList.txt');
+
+    ShowMessage('Files found: ' + IntToStr(slPictureList.Count));
+  finally
+    slPictureList.Free;
   end;
 
   //Assigns items in textfile CharacterList.txt to combobox cbbCharacters
@@ -439,6 +467,53 @@ begin
   cbbDefinition.Items.AddStrings(BubbleSort(slDefinitionItems));
 
   slDefinitionItems.Free;
+
+  //Assigns items in textfile PictureList.txt to combobox cbbPicture
+  slPictureItems:= TStringList.Create;
+
+  AssignFile(TF, 'Lists/PictureList.txt');
+  try
+     Reset(TF);
+  except
+     ShowMessage('Sorry, the text file does not exist in this folder.');
+     Exit;
+  end;
+
+  while not Eof(TF) do
+    begin
+      Readln(TF, sOneLine);
+
+      //Copys everything before "("
+      iPos:= Pos(' (',sOneLine);
+      sType:= Copy(sOneLine,1,iPos-1);
+      Delete(sOneLine,1,iPos);
+
+      //Copys everything after "\"
+      iPos:= Pos('\',sType);
+      sOneLine:= Copy(sType,iPos+1,Length(sType));
+      Delete(sType,1,iPos);
+
+      //Copys everything after "\"
+      iPos:= Pos('\',sOneLine);
+      sType:= Copy(sOneLine,iPos+1,Length(sOneLine));
+      Delete(sOneLine,1,iPos);
+
+      slPictureItems.Sorted:= True;
+      slPictureItems.Duplicates := dupIgnore;
+
+      if sType = ''
+      then begin
+             Continue;
+           end
+           else begin
+                  slPictureItems.Add(sType)
+                end;
+    end;
+  CloseFile(TF);
+
+  cbbPicturesChoice.Items.AddStrings(slPictureItems);
+
+  slPictureItems.Free;
 end;
 
 procedure TfrmBGBInformer.helpPage;
@@ -487,13 +562,15 @@ begin
        closeApp;
      end;
   end;
+
+  rgpCharacterOptions.ItemIndex:= -1;
 end;
 
-procedure TfrmBGBInformer.rgpGameClick(Sender: TObject);
+procedure TfrmBGBInformer.rgpOptionsClick(Sender: TObject);
 begin
-  case rgpGame.ItemIndex of
+  case rgpOptions.ItemIndex of
   0: begin
-       ShellExecute(0, 'open', PChar('Tetris.bat'),nil,nil,SW_HIDE);
+       backToStart;
      end;
   1: begin
        helpPage;
@@ -503,7 +580,7 @@ begin
      end;
   end;
 
-  //rgpGame.ItemIndex:= -1;
+  rgpOptions.ItemIndex:= -1;
 end;
 
 procedure TfrmBGBInformer.rgpOptionsDefinitionClick(Sender: TObject);
@@ -519,6 +596,8 @@ begin
        closeApp;
      end;
   end;
+
+  rgpOptionsDefinition.ItemIndex:= -1;
 end;
 procedure TfrmBGBInformer.rgpPicturesOptionsClick(Sender: TObject);
 begin
@@ -533,6 +612,8 @@ begin
        closeApp;
      end;
   end;
+
+  rgpPicturesOptions.ItemIndex:= -1;
 end;
 
 procedure TfrmBGBInformer.rgpWelcomeOptionsClick(Sender: TObject);
@@ -563,15 +644,17 @@ begin
        closeApp;
      end;
   end;
+
+  rgpWelcomeOptions.ItemIndex:= -1;
 end;
 
 procedure TfrmBGBInformer.tabInVisible;
 begin
+  tbshtWelcome.TabVisible:= False;
   tbshtHelp.TabVisible:= False;
   tbshtGames.TabVisible:= False;
   tbshtVideos.TabVisible:= False;
   tbshtPictures.TabVisible:= False;
-  tbshtWelcome.TabVisible:= False;
   tbshtFarewell.TabVisible:= False;
   tbshtCharacters.TabVisible:= False;
   tbshtDefinitions.TabVisible:= False;

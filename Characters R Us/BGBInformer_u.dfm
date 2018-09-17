@@ -210,12 +210,15 @@ object frmBGBInformer: TfrmBGBInformer
       Caption = 'Pictures'
       ImageIndex = 6
       object imgPictureDisplay: TImage
-        Left = 0
+        Left = 185
         Top = 49
-        Width = 761
+        Width = 391
         Height = 255
         Align = alClient
+        Center = True
         Stretch = True
+        ExplicitLeft = 152
+        ExplicitTop = 51
         ExplicitWidth = 265
         ExplicitHeight = 247
       end
@@ -235,8 +238,6 @@ object frmBGBInformer: TfrmBGBInformer
           Align = alClient
           Style = csDropDownList
           TabOrder = 0
-          Items.Strings = (
-            'Kelli Berglund')
         end
         object btbtnLoadPicture: TBitBtn
           Left = 656
@@ -263,8 +264,30 @@ object frmBGBInformer: TfrmBGBInformer
           'Back to Start'
           'Help'
           'Close')
-        TabOrder = 1
+        TabOrder = 3
         OnClick = rgpPicturesOptionsClick
+      end
+      object pnlLeftPicture: TPanel
+        Left = 0
+        Top = 49
+        Width = 185
+        Height = 255
+        Align = alLeft
+        TabOrder = 1
+        ExplicitLeft = 32
+        ExplicitTop = 80
+        ExplicitHeight = 41
+      end
+      object pnlRightPicture: TPanel
+        Left = 576
+        Top = 49
+        Width = 185
+        Height = 255
+        Align = alRight
+        TabOrder = 2
+        ExplicitLeft = 640
+        ExplicitTop = 128
+        ExplicitHeight = 41
       end
     end
     object tbshtGames: TTabSheet
@@ -290,23 +313,165 @@ object frmBGBInformer: TfrmBGBInformer
         ParentFont = False
         TabOrder = 0
       end
-      object rgpGame: TRadioGroup
+      object grdpnlGameSelection: TGridPanel
         Left = 0
         Top = 113
         Width = 761
-        Height = 275
+        Height = 223
         Align = alClient
-        Caption = 'rgpGame'
-        Items.Strings = (
-          'Tetris'
-          'Help'
-          'Close')
+        Caption = 'grdpnlGameSelection'
+        ColumnCollection = <
+          item
+            Value = 50.000000000000000000
+          end
+          item
+            Value = 50.000000000000000000
+          end>
+        ControlCollection = <
+          item
+            Column = 0
+            Control = btbtnTetris
+            Row = 0
+          end
+          item
+            Column = 1
+            Control = btbtnPacman
+            Row = 0
+          end
+          item
+            Column = 0
+            Control = btbtnSonic
+            Row = 1
+          end
+          item
+            Column = 1
+            Control = btbtnSnakes
+            Row = 1
+          end
+          item
+            Column = 0
+            Control = btbtnBackToStart
+            Row = 2
+          end
+          item
+            Column = 1
+            Control = btbtnHelp
+            Row = 2
+          end>
+        RowCollection = <
+          item
+            Value = 35.317941683762190000
+          end
+          item
+            Value = 33.650775297435740000
+          end
+          item
+            Value = 31.031283018802090000
+          end>
         TabOrder = 1
-        OnClick = rgpGameClick
-        ExplicitLeft = 208
+        ExplicitLeft = 256
         ExplicitTop = 160
         ExplicitWidth = 185
-        ExplicitHeight = 105
+        ExplicitHeight = 41
+        object btbtnTetris: TBitBtn
+          Left = 1
+          Top = 1
+          Width = 379
+          Height = 78
+          Align = alClient
+          Caption = 'Tetris'
+          DoubleBuffered = True
+          ParentDoubleBuffered = False
+          TabOrder = 0
+          OnClick = btbtnTetrisClick
+          ExplicitLeft = -5
+          ExplicitTop = -5
+          ExplicitHeight = 103
+        end
+        object btbtnPacman: TBitBtn
+          Left = 380
+          Top = 1
+          Width = 380
+          Height = 78
+          Align = alClient
+          Caption = 'Pacman'
+          DoubleBuffered = True
+          ParentDoubleBuffered = False
+          TabOrder = 1
+          ExplicitLeft = 386
+          ExplicitTop = -5
+        end
+        object btbtnSonic: TBitBtn
+          Left = 1
+          Top = 79
+          Width = 379
+          Height = 74
+          Align = alClient
+          Caption = 'Sonic'
+          DoubleBuffered = True
+          ParentDoubleBuffered = False
+          TabOrder = 2
+          ExplicitLeft = 112
+          ExplicitTop = 104
+          ExplicitWidth = 75
+          ExplicitHeight = 25
+        end
+        object btbtnSnakes: TBitBtn
+          Left = 380
+          Top = 79
+          Width = 380
+          Height = 74
+          Align = alClient
+          Caption = 'Snakes'
+          DoubleBuffered = True
+          ParentDoubleBuffered = False
+          TabOrder = 3
+          ExplicitLeft = 472
+          ExplicitTop = 88
+          ExplicitWidth = 75
+          ExplicitHeight = 25
+        end
+        object btbtnBackToStart: TBitBtn
+          Left = 1
+          Top = 153
+          Width = 379
+          Height = 69
+          Align = alClient
+          Caption = 'Back To Start'
+          DoubleBuffered = True
+          ParentDoubleBuffered = False
+          TabOrder = 4
+          ExplicitLeft = 200
+          ExplicitTop = 176
+          ExplicitWidth = 75
+          ExplicitHeight = 25
+        end
+        object btbtnHelp: TBitBtn
+          Left = 380
+          Top = 153
+          Width = 380
+          Height = 69
+          Align = alClient
+          Caption = 'Help'
+          DoubleBuffered = True
+          ParentDoubleBuffered = False
+          TabOrder = 5
+          ExplicitLeft = 520
+          ExplicitTop = 168
+          ExplicitWidth = 75
+          ExplicitHeight = 25
+        end
+      end
+      object btbtnClose: TBitBtn
+        Left = 0
+        Top = 336
+        Width = 761
+        Height = 52
+        Align = alBottom
+        Caption = 'Close'
+        DoubleBuffered = True
+        ParentDoubleBuffered = False
+        TabOrder = 2
       end
     end
     object tbshtVideos: TTabSheet
@@ -385,6 +550,7 @@ object frmBGBInformer: TfrmBGBInformer
             'Help'
             'Close')
           TabOrder = 2
+          OnClick = rgpOptionsClick
         end
       end
     end
